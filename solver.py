@@ -1,9 +1,18 @@
+import sys
 import loader
+
+use_wordles = False
+
+if len(sys.argv) == 2:
+    if sys.argv[1].lower() == 'true':
+        use_wordles = True
 
 words = loader.load_words()
 
 simple = words['simple']
 advanced = words['advanced']
+
+wordles = loader.load_wordle_words()
 
 """
 Create dictionary.txt
@@ -120,12 +129,14 @@ while win:
             print('You won!')
             break
 
-        simple_words = list(filter(lambda w: suggestWord(w), simple))
-
-        advanced_words = list(filter(lambda w: suggestWord(w), advanced))
-
         output = ''.join(final_word)
-
         print(output.upper())
-        print('Simple words:', simple_words)
-        print('Advanced words:', advanced_words)
+
+        if use_wordles:
+            wordle_words = list(filter(lambda w: suggestWord(w), wordles))
+            print('Suggested words:', wordle_words)
+        else:
+            simple_words = list(filter(lambda w: suggestWord(w), simple))
+            print('Simple words:', simple_words)
+            advanced_words = list(filter(lambda w: suggestWord(w), advanced))
+            print('Advanced words:', advanced_words)
