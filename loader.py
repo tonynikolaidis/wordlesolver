@@ -9,7 +9,14 @@ import json
 
 def load_words():
     with open("dictionary.txt") as word_file:
-        # valid_words = set(word_file.read().split())
         valid_words = json.load(word_file)
+
+    return valid_words
+
+
+def load_wordle_words():
+    with open("wordle_dictionary.txt") as word_file:
+        valid_words = list(word_file.read().split())
+        # valid_words = json.load(word_file)
 
     return valid_words
