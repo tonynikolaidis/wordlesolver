@@ -8,6 +8,14 @@ Wordle Solver is a command line application. Run
 python3 solver.py
 ```
 
+or
+
+```commandline
+python3 solver.py true
+```
+
+to use the list of words used in the original Wordle game.
+
 To enter your guess, use this format `word:symbols`
 
 The symbols available are the following:
