@@ -49,6 +49,7 @@ incorrect_positions = [
     [],  # 3
     []  # 4
 ]
+included_letters = []
 
 
 def suggestWord(w):
@@ -62,6 +63,7 @@ def suggestWord(w):
             (w[2] not in incorrect_letters) and
             (w[3] not in incorrect_letters) and
             (w[4] not in incorrect_letters) and
+            (all(x in w for x in included_letters)) and
             (w[0] == final_word[0] if final_word[0] != '_' else True) and
             (w[1] == final_word[1] if final_word[1] != '_' else True) and
             (w[2] == final_word[2] if final_word[2] != '_' else True) and
@@ -107,6 +109,7 @@ while win:
             indices = [i for i, s in enumerate(symbols) if s == '?']
             for index in indices:
                 incorrect_positions[index].append(letters[index])
+                included_letters.append(letters[index])
 
         if '_' in symbols:
             indices = [i for i, s in enumerate(symbols) if s == '_']
